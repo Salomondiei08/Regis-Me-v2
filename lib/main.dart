@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:regis_me/screens/splash_screen.dart';
 
-
 void main() {
   runApp( const RegisMe());
 }
-
 
 class RegisMe extends StatelessWidget {
   const RegisMe({super.key});

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:regis_me/screens/edit_screen.dart';
+import 'package:regis_me/screens/people_screen.dart';
+import 'package:regis_me/screens/search_screen.dart';
+
+import 'info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,6 +13,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 int _currentIndex = 0;
+List<Widget> _pageList = const [
+  InfoScreen(),
+  SearchScreen(),
+  EditScreen(),
+  AccountScreen()
+];
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -16,15 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: const Text('Regis Me'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.menu),
+          ),
+        ],
       ),
+      body: Center(child: _pageList[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         onTap: (index) => setState(() {
           _currentIndex = index;
         }),
-        unselectedLabelStyle: TextStyle(color: Colors.green.withOpacity(0.3)),
-        selectedLabelStyle: const TextStyle(color: Colors.green),
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(
@@ -41,17 +58,18 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'search'),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.add,
+              Icons.edit,
               color: Colors.green,
             ),
-            label: 'Add',
+            label: 'Edit',
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.delete,
-                color: Colors.green,
-              ),
-              label: 'delete')
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.green,
+            ),
+            label: 'Account',
+          ),
         ],
       ),
     );
