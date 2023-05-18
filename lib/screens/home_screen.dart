@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:regis_me/screens/edit_screen.dart';
-import 'package:regis_me/screens/people_screen.dart';
 import 'package:regis_me/screens/search_screen.dart';
 
+import 'account_acreen.dart';
 import 'info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
