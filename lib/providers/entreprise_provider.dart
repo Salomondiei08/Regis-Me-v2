@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:regis_me/models/entreprise.dart';
 
-class EnterpriseProvider with ChangeNotifier {
+class EntrepriseProvider with ChangeNotifier {
   List<Entreprise> items = [
     Entreprise(
         nom: 'IIT',
@@ -32,8 +32,26 @@ class EnterpriseProvider with ChangeNotifier {
         longitude: 0.2),
   ];
 
+  var _showFavoriteOnly = false;
+
+  void showFavoriteOnly() {
+    _showFavoriteOnly = true;
+    notifyListeners();
+  }
+
+  void showAll() {
+    _showFavoriteOnly = false;
+    notifyListeners();
+  }
+
   List<Entreprise> allItems() {
-    return items;
+    if (_showFavoriteOnly) {
+      return items
+          .where((entreprise) => entreprise.isFavorite == true)
+          .toList();
+    } else {
+      return items;
+    }
   }
 
   void addEnterprise(Entreprise entreprise) {
@@ -42,9 +60,43 @@ class EnterpriseProvider with ChangeNotifier {
   }
 
   List<Entreprise> searchByName(String entrepriseNom) {
-    return items
-        .where((entreprise) =>
-            entreprise.nom.toLowerCase().contains(entrepriseNom.toLowerCase()))
-        .toList();
+    if ((entrepriseNom.isNotEmpty) && (entrepriseNom != "")) {
+      return items
+          .where((entreprise) => entreprise.nom
+              .toLowerCase()
+              .contains(entrepriseNom.toLowerCase()))
+          .toList();
+    } else {
+      return items;
+    }
+  }
+
+  void addEntreprise(Entreprise entreprise) {
+    final newEntreprise = Entreprise(
+        nom: entreprise.nom,
+        urlImage: entreprise.urlImage,
+        description: entreprise.description,
+        email: entreprise.email,
+        contact: entreprise.contact,
+        longitude: entreprise.longitude,
+        lattitude: entreprise.lattitude);
+    items.insert(0, newEntreprise);
+    notifyListeners();
+  }
+
+  void updateEntreprise(String nom, Entreprise entreprise) {
+    final prosIndex = items.indexWhere((etp) => etp.nom == nom);
+    if (prosIndex >= 0) {
+      items[prosIndex] = entreprise;
+      notifyListeners();
+    } else {
+      print('...');
+    }
+  }
+
+  void deleteEntreprise(String nom) {
+    items.removeWhere((pros) => pros.nom == nom);
+    notifyListeners();
+    debugPrint('$nom removed successfully');
   }
 }

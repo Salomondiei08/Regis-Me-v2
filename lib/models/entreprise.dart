@@ -1,4 +1,6 @@
-class Entreprise {
+import 'package:flutter/material.dart';
+
+class Entreprise with ChangeNotifier {
   final String nom;
   final String description;
   final String email;
@@ -16,4 +18,11 @@ class Entreprise {
       required this.contact,
       required this.lattitude,
       required this.longitude});
+
+
+  void toggleFavoriteStatus() {
+    isFavorite = !isFavorite;
+    notifyListeners();
+  }
 }
+

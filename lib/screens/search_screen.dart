@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/search_widget.dart';
+
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: const [
-          Text(
-            'Search',
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(height: 10,),
-          Icon(Icons.search)
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        actions: [IconButton(onPressed: () => showSearch(context: context, delegate: Search()), icon: Icon(Icons.search))],
       ),
     );
   }

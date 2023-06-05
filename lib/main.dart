@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:regis_me/providers/entreprise_provider.dart';
 import 'package:regis_me/screens/splash_screen.dart';
 
 void main() {
-  runApp( const RegisMe());
+  runApp(const RegisMe());
 }
 
 class RegisMe extends StatelessWidget {
@@ -10,10 +12,13 @@ class RegisMe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Regis Me',
-      home: SplashScreen(),
+    return ChangeNotifierProvider(
+      create: (ctx) => EntrepriseProvider(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Regis Me',
+        home: SplashScreen(),
+      ),
     );
   }
 }

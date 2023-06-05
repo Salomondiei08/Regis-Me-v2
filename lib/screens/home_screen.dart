@@ -24,16 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text('Regis Me'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-        ],
-      ),
       body: Center(child: _pageList[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.green,
