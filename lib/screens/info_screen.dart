@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regis_me/providers/entreprise_provider.dart';
+import 'package:regis_me/screens/entreprise_detail_screen.dart';
 
 import '../widgets/entreprise_widget.dart';
 
@@ -60,7 +61,11 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) =>
+                            EntrepriseDetailScreen(entreprise: entreprise[i]))),
                 child: Image.network(
                   entreprise[i].urlImage,
                   fit: BoxFit.cover,
