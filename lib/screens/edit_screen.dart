@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regis_me/providers/entreprise_provider.dart';
-import 'package:regis_me/widgets/entrepriseListWidget.dart';
+import 'package:regis_me/widgets/entreprise_list_widget.dart';
 
 class EditScreen extends StatelessWidget {
   const EditScreen({super.key});

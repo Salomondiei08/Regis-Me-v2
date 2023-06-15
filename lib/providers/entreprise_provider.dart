@@ -4,7 +4,43 @@ import 'package:regis_me/models/entreprise.dart';
 class EntrepriseProvider with ChangeNotifier {
   List<Entreprise> items = [
     Entreprise(
+        nom: 'Google',
+        description: 'Best Uni',
+        email: 'iit@iit.ci',
+        urlImage:
+            'https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=1390&crop=1',
+        contact: '00225070897972',
+        lattitude: 9.0,
+        longitude: 0.2),
+    Entreprise(
+        nom: 'LOLO',
+        description: 'Best Uni',
+        email: 'iit@iit.ci',
+        urlImage:
+            'https://raw.githubusercontent.com/rrousselGit/provider/master/resources/flutter_favorite.png',
+        contact: '00225070897972',
+        lattitude: 9.0,
+        longitude: 0.2),
+    Entreprise(
+        nom: 'LALA',
+        description: 'Best Uni',
+        email: 'iit@iit.ci',
+        urlImage:
+            'https://raw.githubusercontent.com/rrousselGit/provider/master/resources/flutter_favorite.png',
+        contact: '00225070897972',
+        lattitude: 9.0,
+        longitude: 0.2),
+    Entreprise(
         nom: 'IIT',
+        description: 'Best Uni',
+        email: 'iit@iit.ci',
+        urlImage:
+            'https://raw.githubusercontent.com/rrousselGit/provider/master/resources/flutter_favorite.png',
+        contact: '00225070897972',
+        lattitude: 9.0,
+        longitude: 0.2),
+    Entreprise(
+        nom: 'KK',
         description: 'Best Uni',
         email: 'iit@iit.ci',
         urlImage:
@@ -62,26 +98,11 @@ class EntrepriseProvider with ChangeNotifier {
   List<Entreprise> searchByName(String entrepriseNom) {
     if ((entrepriseNom.isNotEmpty) && (entrepriseNom != "")) {
       return items
-          .where((entreprise) => entreprise.nom
-              .toLowerCase()
-              .contains(entrepriseNom.toLowerCase()))
+          .where((entreprise) => entreprise.nom.contains(entrepriseNom))
           .toList();
     } else {
       return items;
     }
-  }
-
-  void addEntreprise(Entreprise entreprise) {
-    final newEntreprise = Entreprise(
-        nom: entreprise.nom,
-        urlImage: entreprise.urlImage,
-        description: entreprise.description,
-        email: entreprise.email,
-        contact: entreprise.contact,
-        longitude: entreprise.longitude,
-        lattitude: entreprise.lattitude);
-    items.insert(0, newEntreprise);
-    notifyListeners();
   }
 
   void updateEntreprise(String nom, Entreprise entreprise) {
@@ -95,7 +116,7 @@ class EntrepriseProvider with ChangeNotifier {
   }
 
   void deleteEntreprise(String nom) {
-    items.removeWhere((pros) => pros.nom == nom);
+    items.removeWhere((etp) => etp.nom == nom);
     notifyListeners();
     debugPrint('$nom removed successfully');
   }

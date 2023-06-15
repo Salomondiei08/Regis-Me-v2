@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regis_me/providers/entreprise_provider.dart';
 
-import '../models/entreprise.dart';
+import '../widgets/entreprise_widget.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
@@ -27,15 +27,12 @@ class _InfoScreenState extends State<InfoScreen> {
           actions: [
             PopupMenuButton(
               itemBuilder: (_) => [
-                const PopupMenuItem(
-                    value: FilterOptions.favorites,
-                    child: Text('Only Favorites')),
-                const PopupMenuItem(
-                    value: FilterOptions.all, child: Text('Show All')),
+                const PopupMenuItem(value: 1, child: Text('Only Favorites')),
+                const PopupMenuItem(value: 2, child: Text('Show All')),
               ],
               icon: const Icon(Icons.more_vert),
-              onSelected: (FilterOptions selectedValue) {
-                if (selectedValue == FilterOptions.favorites) {
+              onSelected: (int selectedValue) {
+                if (selectedValue == 1) {
                   entrepriseData.showFavoriteOnly();
                 } else {
                   entrepriseData.showAll();
@@ -52,7 +49,7 @@ class _InfoScreenState extends State<InfoScreen> {
             borderRadius: BorderRadius.circular(10),
             child: GridTile(
               footer: GridTileBar(
-                backgroundColor: Colors.black87,
+                backgroundColor: Colors.black.withOpacity(0.4),
                 title: Text(
                   entreprise[i].nom,
                   textAlign: TextAlign.center,
@@ -78,35 +75,6 @@ class _InfoScreenState extends State<InfoScreen> {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
       )),
-    );
-  }
-}
-
-class EntrepriseWidget extends StatelessWidget {
-  const EntrepriseWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final entreprise = Provider.of<Entreprise>(context);
-
-    return IconButton(
-      icon: Icon(entreprise.isFavorite ? Icons.star : Icons.star_border),
-      onPressed: () {
-        entreprise.toggleFavoriteStatus();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Company added to favorite'),
-            duration: const Duration(seconds: 3),
-            action: SnackBarAction(
-              label: 'UNDO',
-              onPressed: () {},
-            ),
-          ),
-        );
-      },
-      color: Theme.of(context).colorScheme.secondary,
     );
   }
 }
