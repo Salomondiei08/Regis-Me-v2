@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:regis_me/screens/map_screen.dart';
 
 import '../models/entreprise.dart';
 
@@ -38,7 +39,12 @@ class EntrepriseDetailScreen extends StatelessWidget {
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (ctx) => MapScreen(entreprise: entreprise),
+                  ),
+                ),
                 child: const Text('Voir la map'),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               )
